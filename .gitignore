@@ -5,7 +5,8 @@
 **/target/
 
 # Projects maven .iml files
-ReaderWriterProblem.iml
+**/ReaderWriterProblem.iml
+**/ProducerConsumerProblemSimple.iml
 
 
 # User-specific stuff:
