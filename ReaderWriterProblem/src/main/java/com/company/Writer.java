@@ -5,8 +5,8 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 public class Writer implements Runnable {
 
-	public static final int MAX_WAIT_TIME_SEC = 3;
-	public static final int MAX_VALUE_TO_GENERATE = 1000;
+	private static final int MAX_WAIT_TIME_SEC = 3;
+	private static final int MAX_VALUE_TO_GENERATE = 1000;
 
 	private SharedData sharedObj;
 	private ReadWriteLock lock;
@@ -49,6 +49,6 @@ public class Writer implements Runnable {
 	}
 
 	private int generateValue() {
-		return (new Random()).nextInt(MAX_VALUE_TO_GENERATE);
+		return new Random().nextInt(MAX_VALUE_TO_GENERATE);
 	}
 }

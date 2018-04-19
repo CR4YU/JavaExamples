@@ -11,7 +11,7 @@ public class ReaderWriterDemo {
 	private ReadWriteLock lock = new ReentrantReadWriteLock();
 
 	public static void main(String[] args) {
-		(new ReaderWriterDemo()).runDemo();
+		new ReaderWriterDemo().runDemo();
 	}
 
 	private void runDemo() {

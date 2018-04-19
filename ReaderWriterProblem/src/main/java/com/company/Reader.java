@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 public class Reader implements Runnable {
 
-	public static final int MAX_WAIT_TIME_SEC = 3;
+	private static final int MAX_WAIT_TIME_SEC = 3;
 
 	private SharedData sharedObj;
 	private ReadWriteLock lock;
