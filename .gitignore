@@ -4,6 +4,9 @@
 
 **/target/
 
+# Projects maven .iml files
+ReaderWriterProblem.iml
+
 
 # User-specific stuff:
 **/.idea/**/workspace.xml
@@ -20,14 +23,7 @@
 **/.idea/**/uiDesigner.xml
 
 
-
 ## File-based project format:
 *.iws
 
-
-
 **/.idea_modules/
-
-
-
-
