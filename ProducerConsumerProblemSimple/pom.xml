@@ -8,7 +8,7 @@
   <artifactId>producer-consumer-problem-simple</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>producer-consumer-problem-simple</name>
+  <name>ProducerConsumerProblemSimple</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
