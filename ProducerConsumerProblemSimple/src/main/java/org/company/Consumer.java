@@ -22,6 +22,7 @@ public class Consumer extends Thread {
 			synchronized (objList) {
 				waitUntilConsumptionPossible();
 				obj = objList.remove(0);
+				objList.notifyAll();
 				logConsumptionMade(obj);
 			}
 			processObject(obj);
