@@ -5,10 +5,9 @@ import java.util.Random;
 
 public class Producer extends Thread {
 
-	private static final int MAX_WAIT_TIME_SEC = 2;
-	private static final int LIST_CAPACITY = 10;
+	private static final int MAX_GENERATE_TIME_NS = 4000;
+	private static final int LIST_CAPACITY = 20;
 
-	private boolean done = false;
 	private List<Object> objList;
 
 	public Producer(String name, List<Object> objList) {
@@ -18,7 +17,7 @@ public class Producer extends Thread {
 
 	@Override
 	public void run() {
-		while(!done) {
+		while(true) {
 			Object newOBj = requestNewObject();
 			synchronized (objList) {
 				waitUntilProductionPossible();
@@ -39,10 +38,6 @@ public class Producer extends Thread {
 		}
 	}
 
-	public void setDone() {
-		done = true;
-	}
-
 	private Object requestNewObject() {
 		StringBuilder s = new StringBuilder();
 		for(int i=0; i<5; i++) {
@@ -53,7 +48,7 @@ public class Producer extends Thread {
 	}
 
 	private char getRandomChar() {
-		return (char)new Random().nextInt(26 + 'a');
+		return (char)(new Random().nextInt(26) + 'a');
 	}
 
 	private void logNewObjectProduced(Object obj) {
@@ -64,7 +59,7 @@ public class Producer extends Thread {
 	private void waitRandomTime() {
 		Random rand = new Random();
 		try {
-			Thread.sleep(rand.nextInt(MAX_WAIT_TIME_SEC * 1000));
+			Thread.sleep(rand.nextInt(MAX_GENERATE_TIME_NS));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

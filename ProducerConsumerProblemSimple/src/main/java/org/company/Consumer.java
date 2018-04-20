@@ -5,9 +5,8 @@ import java.util.Random;
 
 public class Consumer extends Thread {
 
-	private static final int MAX_WAIT_TIME_SEC = 3;
+	private static final int MAX_PROCESS_TIME_SEC = 10;
 
-	private boolean done = false;
 	private List<Object> objList;
 
 	public Consumer(String name, List<Object> objList) {
@@ -17,7 +16,7 @@ public class Consumer extends Thread {
 
 	@Override
 	public void run() {
-		while(!done) {
+		while(true) {
 			Object obj = null;
 			synchronized (objList) {
 				waitUntilConsumptionPossible();
@@ -27,10 +26,6 @@ public class Consumer extends Thread {
 			}
 			processObject(obj);
 		}
-	}
-
-	public void setDone() {
-		done = true;
 	}
 
 	private void waitUntilConsumptionPossible() {
@@ -56,7 +51,7 @@ public class Consumer extends Thread {
 	private void waitRandomTime() {
 		Random rand = new Random();
 		try {
-			Thread.sleep(rand.nextInt(MAX_WAIT_TIME_SEC * 1000));
+			Thread.sleep(rand.nextInt(MAX_PROCESS_TIME_SEC * 1000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
