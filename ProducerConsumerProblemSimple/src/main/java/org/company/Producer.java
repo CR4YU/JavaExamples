@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Producer extends Thread {
 
-	private static final int MAX_WAIT_TIME_SEC = 3;
+	private static final int MAX_WAIT_TIME_SEC = 2;
 	private static final int LIST_CAPACITY = 10;
 
 	private boolean done = false;
