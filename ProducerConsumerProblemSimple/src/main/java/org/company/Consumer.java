@@ -29,6 +29,10 @@ public class Consumer extends Thread {
 		}
 	}
 
+	public void setDone() {
+		done = true;
+	}
+
 	private void waitUntilConsumptionPossible() {
 		while(objList.isEmpty()) {
 			try {
