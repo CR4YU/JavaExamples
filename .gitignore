@@ -7,6 +7,8 @@
 # Projects maven .iml files
 **/reader-writer-problem.iml
 **/producer-consumer-problem-simple.iml
+**/Singleton.iml
+
 
 
 # User-specific stuff:
