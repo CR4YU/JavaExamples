@@ -6,12 +6,33 @@ Implementation of common computing problem in concurrency.
 Used `ReadWriteLock` - two related locks for writing and reading.
 
 ## ProducerConsumerProblemSimple
-Another problem in concurrency. Threads are synchronised by `wait()`
+Another problem in concurrency.  
+Threads are synchronised by `wait()`
 and `notifyAll()` functions - that's why I called this solution _simple_.
 
 ## Singleton
-Implementation of Singleton design pattern.
+Implementation of Singleton design pattern using double checked locking.  
 Works correctly in concurrent environment.
+```java
+public class Singleton {
+
+    private volatile static Singleton instance;
+
+    private Singleton() {
+    }
+
+    public static Singleton getInstance() {
+        if(instance == null) {
+            synchronized (Singleton.class) {
+                if(instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
 
 ## Strategy
 Implementation of Strategy design pattern.  
