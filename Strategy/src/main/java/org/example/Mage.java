@@ -8,7 +8,7 @@ public class Mage extends Unit {
 	}
 
 	@Override
-	void display() {
+	public void display() {
 		System.out.println("Im a powerful mage with magic staff. I use spells to kill enemies.");
 	}
 }

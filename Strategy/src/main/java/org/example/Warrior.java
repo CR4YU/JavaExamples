@@ -8,7 +8,7 @@ public class Warrior extends Unit {
 	}
 
 	@Override
-	void display() {
+	public void display() {
 		System.out.println("I'm a strong warrior. I carry two-handed sword and round shield.");
 	}
 }

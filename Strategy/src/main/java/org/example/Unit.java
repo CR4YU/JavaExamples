@@ -2,10 +2,10 @@ package org.example;
 
 public abstract class Unit {
 
-	AttackBehaviour attackBehaviour;
-	DefenceBehaviour defenceBehaviour;
+	protected AttackBehaviour attackBehaviour;
+	protected DefenceBehaviour defenceBehaviour;
 
-	abstract void display();
+	public abstract void display();
 
 	public void die() {
 		System.out.println("All units can die so I will die now. Goodbye my friends.");
