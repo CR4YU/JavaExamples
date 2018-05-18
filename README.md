@@ -35,11 +35,16 @@ public class Singleton {
 ```
 
 ## Strategy
-Implementation of Strategy design pattern.  
+Implementation of **Strategy** design pattern.  
+Strategy pattern defines a set of algorithms 
+that can be swapped at run time to carry out a specific behaviour.
+This type of design pattern comes under behavior pattern.  
+
+
 Abstract class `Unit` has two fields:
 ```java
 AttackBehaviour attackBehaviour;
-DefenceBehaviour defencebehaviour;
+DefenceBehaviour defenceBehaviour;
 ```
 And methods to perform specific behaviours:
 ```java
