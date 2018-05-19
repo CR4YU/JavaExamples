@@ -5,8 +5,8 @@
 **/target/
 
 # Projects maven .iml files
-**/reader-writer-problem.iml
-**/producer-consumer-problem-simple.iml
+**/ReaderWriterProblem.iml
+**/ProducerConsumerProblemSimple.iml
 **/Singleton.iml
 **/Strategy.iml
 **/Observer.iml

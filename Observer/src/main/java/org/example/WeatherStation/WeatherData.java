@@ -36,5 +36,4 @@ public class WeatherData implements Subject {
 
 		measurementsChanged();
 	}
-
 }
