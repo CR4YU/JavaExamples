@@ -284,7 +284,7 @@ Result:
 Simple **Spring Boot** application to manage contact list. All contacts are stored
 in **H2** Database. For presentation layer I used **thymeleaf** - modern server-side 
 Java template engine.
-![Alt text](images/contacts.png?raw=true "Screenshot")
+![Alt text](images/contacts.PNG?raw=true "Screenshot")
 
 
 
