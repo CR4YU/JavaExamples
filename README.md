@@ -5,10 +5,105 @@ Java examples and solutions of common problems.
 Implementation of common computing problem in concurrency.  
 Used `ReadWriteLock` - two related locks for writing and reading.
 
+`Writer` thread:
+```java
+public void run() {
+	while(true) {
+		lock.writeLock().lock();
+		try {
+			int newValue = generateValue();
+			sharedObj.write(newValue);
+			logWriteMade(newValue);
+		} finally {
+			lock.writeLock().unlock();
+		}
+		waitRandomTime();
+	}
+}
+```
+At first writer thread locks a write lock, then generates a value (int in this example)
+and then assigns it to shared object. At the end thread releases the lock and waits
+some time before next while loop iteration.
+
+`Reader` thread:
+```java
+public void run() {
+	while(true) {
+		lock.readLock().lock();
+		try {
+			int newValue = sharedObj.read();
+			logReadMade(newValue);
+		} finally {
+			lock.readLock().unlock();
+		}
+		waitRandomTime();
+	}
+}
+``` 
+Reader thread is very similar. Main loop takes following steps: acquires read lock,
+reads value from shared object and finally releases the lock. 
+
+
 ## ProducerConsumerProblemSimple
 Another problem in concurrency.  
 Threads are synchronised by `wait()`
 and `notifyAll()` functions - that's why I called this solution _simple_.
+
+`Producer` thread:
+
+```java
+public void run() {
+	while(true) {
+		Object newOBj = requestNewObject();
+		synchronized (objList) {
+			waitUntilProductionPossible();
+			objList.add(newOBj);
+			objList.notifyAll();
+			logNewObjectProduced(newOBj);
+		}
+	}
+}
+
+private void waitUntilProductionPossible() {
+	while(objList.size() == LIST_CAPACITY) {
+		try {
+			objList.wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
+Producer creates new object and adds to shared queue.
+
+`Consumer` thread works similarly:
+```java
+public void run() {
+	while(true) {
+		Object obj = null;
+		synchronized (objList) {
+			waitUntilConsumptionPossible();
+			obj = objList.remove(0);
+			objList.notifyAll();
+			logConsumptionMade(obj);
+		}
+		processObject(obj);
+	}
+}
+private void waitUntilConsumptionPossible() {
+	while(objList.isEmpty()) {
+		try {
+			objList.wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
+
+
+
+
 
 ## Singleton
 Implementation of **Singleton** design pattern using double checked locking.  
