@@ -11,4 +11,3 @@ public class Espresso extends Beverage {
 		return 1.99;
 	}
 }
-

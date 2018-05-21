@@ -383,6 +383,103 @@ Java template engine.
 
 
 
+##Decorator
+Implementation of `Decorator` design pattern.
 
+This pattern allows to add new functionality to an existing object 
+without editing its structure.
+Decorator comes under structural pattern. It acts like 
+wrapper to existing class.
 
+At first we create supertype for both decorators and decorated classes.
+```java
+public abstract class Beverage {
 
+	String description = "Unknown Beverage";
+  
+	public String description() {
+		return description;
+	}
+ 
+	public abstract double cost();
+}
+```
+Now we create class that will be decorated. Every coffee type has its own price.
+```java
+public class Cappuccino extends Beverage {
+
+	public Cappuccino() {
+		description = "Cappuccino Coffee";
+	}
+
+	@Override
+	public double cost() {
+		return 0.89;
+	}
+}
+```
+Now `Decorator` - abstract class extending `Beverage`.
+```java
+public abstract class Decorator extends Beverage {
+	public abstract String description();
+}
+```
+And finally we create specific decorators.
+```java
+public class Milk extends Decorator {
+
+	Beverage beverage;
+
+	public Milk(Beverage beverage) {
+		this.beverage = beverage;
+	}
+
+	@Override
+	public String description() {
+		return beverage.description() + ", Milk";
+	}
+
+	@Override
+	public double cost() {
+		return 0.10 + beverage.cost();
+	}
+}
+```
+Every decorator contains reference to decorated object.
+
+Let's test cafe:
+```java
+public class CoffeeDemo {
+ 
+	public static void main(String args[]) {
+		Beverage beverage = new Espresso();
+		System.out.println(beverage.description() + " $" + beverage.cost());
+ 
+		Beverage beverage2 = new DarkRoast();
+		beverage2 = new Mocha(beverage2);
+		beverage2 = new Mocha(beverage2);
+		beverage2 = new Whip(beverage2);
+		System.out.println(beverage2.description() + " $" + beverage2.cost());
+ 
+		Beverage beverage3 = new Cappuccino();
+		beverage3 = new Soy(beverage3);
+		beverage3 = new Mocha(beverage3);
+		beverage3 = new Whip(beverage3);
+		System.out.println(beverage3.description() + " $" + beverage3.cost());
+	}
+}
+```
+Take a look at needed steps to create and decorate coffees. At first we create specific type
+of coffee e.g. `Cappuccino`. Then we wrap the coffee into decorator:
+```java
+beverage3 = new Mocha(beverage3);
+```
+Now if we call `cost()` method on that coffee it will return cost of coffee plus
+cost of decorator (mocha).
+
+Result of running demo:
+````
+>Espresso $1.99
+>Dark Roast Coffee, Mocha, Mocha, Whip $1.49
+>Cappuccino Coffee, Soy, Mocha, Whip $1.34
+````

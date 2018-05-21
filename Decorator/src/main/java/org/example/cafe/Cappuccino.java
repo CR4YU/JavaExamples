@@ -11,4 +11,3 @@ public class Cappuccino extends Beverage {
 		return 0.89;
 	}
 }
-

@@ -11,4 +11,3 @@ public class Decaf extends Beverage {
 		return 1.05;
 	}
 }
-

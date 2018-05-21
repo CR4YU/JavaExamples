@@ -11,4 +11,3 @@ public class DarkRoast extends Beverage {
 		return 0.99;
 	}
 }
-
