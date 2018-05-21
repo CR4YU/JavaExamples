@@ -383,7 +383,7 @@ Java template engine.
 
 
 
-##Decorator
+## Decorator
 Implementation of `Decorator` design pattern.
 
 This pattern allows to add new functionality to an existing object 
