@@ -384,7 +384,7 @@ Java template engine.
 
 
 ## Decorator
-Implementation of `Decorator` design pattern.
+Implementation of **Decorator** design pattern.
 
 This pattern allows to add new functionality to an existing object 
 without editing its structure.
@@ -483,3 +483,157 @@ Result of running demo:
 >Dark Roast Coffee, Mocha, Mocha, Whip $1.49
 >Cappuccino Coffee, Soy, Mocha, Whip $1.34
 ````
+
+## Factory method
+Implementation of **Factory Method** design pattern.
+
+This pattern is one of the most used design patterns in Java.
+Factory pattern comes under creational pattern -
+it's one of the best ways to create an objects.
+
+In Factory pattern, we keep object creation logic
+ from client and 
+refer to created object using a common interface.
+
+First step is to create two abstract classes.
+```java
+public abstract class Pizza {
+
+	String name;
+	String dough;
+	String sauce;
+	ArrayList<String> toppings = new ArrayList<>();
+ 
+	void prepare() {
+		System.out.println("Preparing " + name);
+	}
+  
+	void bake() {
+		System.out.println("Bake for 25 minutes at 350");
+	}
+ 
+	void cut() {
+		System.out.println("Cutting the pizza into diagonal slices");
+	}
+  
+	void box() {
+		System.out.println("Place pizza in official PizzaStore box");
+	}
+ 
+}
+```
+We want to make many kinds of pizza. Of course every pizza has it's name,
+must be cut or boxed. Now we want abstract class that represents pizza store.
+```java
+public abstract class PizzaStore {
+ 
+	abstract Pizza createPizza(String item);
+ 
+	public Pizza orderPizza(String type) {
+		Pizza pizza = createPizza(type);
+		System.out.println("--- Making a " + pizza.getName() + " ---");
+		pizza.prepare();
+		pizza.bake();
+		pizza.cut();
+		pizza.box();
+		return pizza;
+	}
+}
+```
+Every pizza store has its own pizza kinds. We will implement two
+different pizza stores: `ChicacoPizzaStore` and `NYPizzaStore`.
+Every store has to implement its own version of factory method.
+```java
+public class ChicagoPizzaStore extends PizzaStore {
+
+	Pizza createPizza(String item) {
+		switch (item) {
+			case "cheese":
+				return new ChicagoStyleCheesePizza();
+			case "veggie":
+				return new ChicagoStyleVeggiePizza();
+			case "clam":
+				return new ChicagoStyleClamPizza();
+			case "pepperoni":
+				return new ChicagoStylePepperoniPizza();
+		}
+		return null;
+	}
+}
+```
+`createPizza()` is our factory method. It returns reference to the
+particular pizza type according to the given string parameter.
+Below there is example of `ChicagoStyleCheesePizza`.
+```java
+public class ChicagoStyleCheesePizza extends Pizza {
+
+	public ChicagoStyleCheesePizza() { 
+		name = "Chicago Style Deep Dish Cheese Pizza";
+		dough = "Extra Thick Crust Dough";
+		sauce = "Plum Tomato Sauce";
+ 
+		toppings.add("Shredded Mozzarella Cheese");
+	}
+ 
+	void cut() {
+		System.out.println("Cutting the pizza into square slices");
+	}
+}
+```
+Testing pizza stores:
+```java
+public class PizzaTestDrive {
+ 
+	public static void main(String[] args) {
+		PizzaStore nyStore = new NYPizzaStore();
+		PizzaStore chicagoStore = new ChicagoPizzaStore();
+ 
+		Pizza pizza = nyStore.orderPizza("cheese");
+		System.out.println("Ethan ordered a " + pizza.getName() + "\n");
+ 
+		pizza = chicagoStore.orderPizza("cheese");
+		System.out.println("Joel ordered a " + pizza.getName() + "\n");
+
+	}
+}
+```
+Results:
+````
+>--- Making a NY Style Sauce and Cheese Pizza ---
+>Preparing NY Style Sauce and Cheese Pizza
+>Tossing dough...
+>Adding sauce...
+>Adding toppings: 
+>Grated Reggiano Cheese 
+>Bake for 25 minutes at 350
+>Cutting the pizza into diagonal slices
+>Place pizza in official PizzaStore box
+>Ethan ordered a NY Style Sauce and Cheese Pizza
+
+>--- Making a Chicago Style Deep Dish Cheese Pizza ---
+>Preparing Chicago Style Deep Dish Cheese Pizza
+>Tossing dough...
+>Adding sauce...
+>Adding toppings: 
+>Shredded Mozzarella Cheese 
+>Bake for 25 minutes at 350
+>Cutting the pizza into square slices
+>Place pizza in official PizzaStore box
+>Joel ordered a Chicago Style Deep Dish Cheese Pizza
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
