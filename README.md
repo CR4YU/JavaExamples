@@ -622,6 +622,16 @@ Results:
 >Joel ordered a Chicago Style Deep Dish Cheese Pizza
 ````
 
+## AbstractFactory
+Implementation of **Abstract factory** design pattern.
+
+Type of creational design pattern. It uses super-factory to
+create other factories so it's usually called _factory of factories_.
+
+In Abstract Factory pattern an interface is responsible
+ for creating a factory of related objects without
+  explicitly specifying their classes. Each generated 
+factory can give the objects as per the Factory pattern.
 
 
 
