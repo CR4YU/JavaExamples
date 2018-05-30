@@ -375,13 +375,6 @@ Result:
 >Heat index: 83.64967
 ````
 
-## SpringBootAppContacts
-Simple **Spring Boot** application to manage contact list. All contacts are stored
-in **H2** Database. For presentation layer I used **thymeleaf** - modern server-side 
-Java template engine.
-![Alt text](images/contacts.PNG?raw=true "Screenshot")
-
-
 
 ## Decorator
 Implementation of **Decorator** design pattern.
@@ -632,6 +625,25 @@ In Abstract Factory pattern an interface is responsible
  for creating a factory of related objects without
   explicitly specifying their classes. Each generated 
 factory can give the objects as per the Factory pattern.
+
+## SpringBootAppContacts
+Simple **Spring Boot** application to manage contact list. All contacts are stored
+in **H2** Database. For presentation layer I used **thymeleaf** - modern server-side 
+Java template engine.
+![Alt text](images/contacts.PNG?raw=true "Screenshot")
+
+## SpringBootRestAppMusicLibrary
+Simple REST service implemented with **Spring Boot**.
+
+Application allows to manage music library using HTTP requests.
+There are two methods:
+* GET - get all artists with their albums
+* POST - add new artist with his albums
+
+As database used **H2**. For ORM used **Hibernate**.
+
+After running Spring Boot application we can test our REST method:
+![Alt text](images/music_library_get.png?raw=true "Screenshot")
 
 
 
