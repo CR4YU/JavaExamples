@@ -626,6 +626,47 @@ In Abstract Factory pattern an interface is responsible
   explicitly specifying their classes. Each generated 
 factory can give the objects as per the Factory pattern.
 
+## Command
+Implementation of **Command** design pattern.
+
+Command pattern 
+falls under behavioral pattern category. 
+It encapsulates requests as objects which allows
+to parameterize various objects with various requests
+and handling operations which can be undone.
+
+First step is creating interface `Command` with one method.
+```java
+public interface Command {
+	void execute();
+}
+```
+Every class that implements this interface is specific **command** 
+on specific object. For example command to turn the light on:
+```java
+public class LightOnCommand implements Command {
+
+	Light light;
+
+	public LightOnCommand(Light light) {
+		this.light = light;
+	}
+
+	public void execute() {
+		light.on();
+	}
+}
+```
+`LightOnCommand` knows exactly hot to turn on the light.
+
+Now to activate the light we have to do following:
+```java
+Light livingRoomLight = new Light("Living Room");
+LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight);
+livingRoomLightOn.execute();
+```
+
+
 ## SpringBootAppContacts
 Simple **Spring Boot** application to manage contact list. All contacts are stored
 in **H2** Database. For presentation layer I used **thymeleaf** - modern server-side 
