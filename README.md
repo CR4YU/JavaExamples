@@ -736,7 +736,7 @@ static void testDuck(Duck duck) {
 }
 ```
 Results:
-````java
+````
 >The Turkey says...
 >Gobble gobble
 >I'm flying a short distance
