@@ -864,6 +864,9 @@ public class HomeTheaterFacade {
 As you can see our facade can control each device end merge
 many actions to one method.
 
+## Composite
+Implementation of **Composite** design pattern.
+
 ## SpringBootAppContacts
 Simple **Spring Boot** application to manage contact list. All contacts are stored
 in **H2** Database. For presentation layer I used **thymeleaf** - modern server-side 
